@@ -1,7 +1,7 @@
 import { theme } from "@/theme";
 import { StyleSheet } from "react-native";
 
-const { colors } = theme;
+const { colors, fontFamily } = theme;
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
   },
   text:  {
     fontSize: 22,
-    color: colors.White
+    color: colors.White,
+    fontFamily: fontFamily.bold
   }
 });
