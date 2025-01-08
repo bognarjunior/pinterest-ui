@@ -1,13 +1,16 @@
 import { View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
+
+import Filters from '@/components/Filters';
+import { FILTERS } from '@/utils/filters';
 
 import { styles } from './styles';
-import Filter from '@/components/Filter';
 
 export default function Home() {
+  const [filter, setFilter] = useState(FILTERS[0]);
   return (
     <View style={styles.container}>
-      <Filter title="Todos" selected />
+      <Filters filters={FILTERS} filter={filter} onChange={setFilter}/>
     </View>
   )
 }
