@@ -3,7 +3,7 @@ import React from 'react'
 import { Tabs } from 'expo-router'
 import { Foundation, Ionicons } from '@expo/vector-icons'
 import { theme } from '@/theme';
-import Avatar from '@/Avatar';
+import Avatar from '@/components/Avatar';
 
 const { colors } = theme;
 

@@ -6,9 +6,9 @@ const { colors, fontFamily } = theme;
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.Black
+    backgroundColor: colors.Black,
+    padding: 12,
+    paddingTop: 52
   },
   text:  {
     fontSize: 22,

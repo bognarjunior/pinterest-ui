@@ -1,12 +1,13 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
 
 import { styles } from './styles';
+import Filter from '@/components/Filter';
 
 export default function Home() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Home</Text>
+      <Filter title="Todos" selected />
     </View>
   )
 }
