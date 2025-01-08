@@ -1,13 +1,22 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View } from 'react-native'
+import React, { useRef} from 'react'
 import { Tabs } from 'expo-router'
 import { FontAwesome5, Foundation, Ionicons } from '@expo/vector-icons'
+import BottomSheet from '@gorhom/bottom-sheet';
+
 import { theme } from '@/theme';
 import Avatar from '@/components/Avatar';
-import Menu from '@/components/Menu';
-const { colors } = theme;
+import {Menu} from '@/components/Menu';
+
+
 
 export default function TabLayout() {
+  const { colors } = theme;
+  const bottomSheetRef = useRef<BottomSheet>(null);
+
+  const handleBottonSheetOpen = () => bottomSheetRef.current?.expand();
+  const handleBottonSheetClose = () => bottomSheetRef.current?.snapToIndex(0);
+
   return (
     <View style={{flex: 1}}>
       <Tabs screenOptions={{ 
@@ -38,7 +47,7 @@ export default function TabLayout() {
           listeners={() => ({
             tabPress: e => {
               e.preventDefault();
-              console.warn("tabPress");
+              handleBottonSheetOpen();
             }
           })}
           />
@@ -58,7 +67,7 @@ export default function TabLayout() {
           }}
           /> 
       </Tabs>
-      <Menu />
+      <Menu ref={bottomSheetRef} onClose={handleBottonSheetClose}/>
     </View>
   )
 }
