@@ -11,6 +11,10 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 12
   },
+  content:{
+    flex: 1,
+    width: "100%",
+  },
   image: {
     width: 64,
     height: 64

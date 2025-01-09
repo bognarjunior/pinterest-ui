@@ -1,7 +1,10 @@
 import { useWindowDimensions, View } from 'react-native';
 import React, { useEffect } from 'react';
+import { router } from 'expo-router';
 import Animated, 
 { 
+  runOnJS,
+  SlideInDown,
   useAnimatedStyle, 
   useSharedValue, 
   withSequence, 
@@ -18,6 +21,7 @@ const { colors } = theme;
 export default function Splash() {
   const logoScale = useSharedValue(1);
   const logoPositionY = useSharedValue(0);
+  const contentDisplay = useSharedValue(0);
   
   const dimensions = useWindowDimensions();
 
@@ -37,6 +41,10 @@ export default function Splash() {
       { translateY: logoPositionY.value }
     ]
   }));
+  
+  const contentAnimatedStyle = useAnimatedStyle(() => ({
+    display: contentDisplay.value === 1 ? "flex" : "none"
+  }));
 
   function logoAnimation() {
     logoScale.value = withSequence(
@@ -45,9 +53,10 @@ export default function Splash() {
       withTiming(1, undefined, (isFinished) => {
         if (isFinished) {
           logoPositionY.value = withSequence(
-            withTiming(50), 
-            withTiming(-dimensions.height, { duration: 1000 }),
-          );
+            withTiming(50, undefined ,  () => contentDisplay.value = 1), 
+            withTiming(-dimensions.height, { duration: 400 }),
+          )
+          runOnJS(onEndSplash)();
         }
       }),
 
@@ -75,6 +84,12 @@ export default function Splash() {
     })
   }
 
+  function onEndSplash() {
+    setTimeout(() => {
+      router.push("/(tabs)/")
+    }, 2000);
+  }
+
   function filters(){
     return Array.from({length: 10})
     .map((_, index) => (
@@ -98,17 +113,22 @@ export default function Splash() {
         style={[styles.image, logoAnimatedStyle]} 
       />
 
-      <View style={styles.filters}>
-        {filters()}
-      </View>
-      <View style={styles.boxes}>
-        <View style={styles.column}>
-          {boxes("left")}
+      <Animated.View 
+        style={[styles.content, contentAnimatedStyle]}
+        entering={SlideInDown.duration(700)}
+      >
+        <View style={styles.filters}>
+          {filters()}
         </View>
-        <View style={styles.column}>
-          {boxes("right")}
+        <View style={styles.boxes}>
+          <View style={styles.column}>
+            {boxes("left")}
+          </View>
+          <View style={styles.column}>
+            {boxes("right")}
+          </View>
         </View>
-      </View>
+        </Animated.View>
     </View>
   )
 }
