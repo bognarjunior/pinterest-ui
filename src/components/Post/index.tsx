@@ -1,5 +1,5 @@
 import { View, Text, Image } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 
 import { PostProps } from './post';
@@ -13,9 +13,19 @@ type Props = {
 }
 
 export default function Post({ post }: Props) {
+  const [aspectRatio, setAspectRatio] = useState(1);
+
+  useEffect(() => {
+    if (post.image) {
+      Image.getSize(post.image, (width, height) => {
+        setAspectRatio(width / height);
+      });
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Image source={{uri: post.image}} style={styles.image} />
+      <Image source={{uri: post.image}} style={[styles.image, {aspectRatio}]} />
 
       <View style={styles.footer}>
         <Text style={styles.title}>{post.title}</Text>

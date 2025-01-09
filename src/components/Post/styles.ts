@@ -5,7 +5,8 @@ const { colors, fontFamily } = theme;
 
 export const styles = StyleSheet.create({
   container: {
-  
+    flex: 1,
+    padding: 8
   },
   footer:{ 
     flexDirection: "row",
@@ -14,8 +15,6 @@ export const styles = StyleSheet.create({
     marginTop: 12
   },
   image: {
-    width: "100%",
-    height: 200,
     borderRadius: 22
   },
   title:{
