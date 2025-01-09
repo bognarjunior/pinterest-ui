@@ -4,6 +4,9 @@ import React, { useState } from 'react'
 import Filters from '@/components/Filters';
 import { FILTERS } from '@/utils/filters';
 
+import Posts from '@/components/Posts';
+import { POSTS } from '@/utils/posts';
+
 import { styles } from './styles';
 
 export default function Home() {
@@ -11,6 +14,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Filters filters={FILTERS} filter={filter} onChange={setFilter}/>
+      <Posts post={POSTS} />
     </View>
   )
 }
