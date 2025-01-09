@@ -6,6 +6,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { MenuProps } from './menu';
 
 import { styles } from './styles';
+import MenuButton from '@/components/MenuButton';
 
 export const Menu = forwardRef<BottomSheet, MenuProps>(({ onClose }, ref) =>{
   return (
@@ -24,6 +25,12 @@ export const Menu = forwardRef<BottomSheet, MenuProps>(({ onClose }, ref) =>{
             onPress={onClose} size={24} 
           />
           <Text style={styles.title}>Comece a criar agora</Text>
+        </View>
+
+        <View style={styles.options}>
+          <MenuButton title='Pin' icon='home' />
+          <MenuButton title='Colagem' icon='copy' />
+          <MenuButton title='Pasta' icon='paste' />
         </View>
       </View>
     </BottomSheet>

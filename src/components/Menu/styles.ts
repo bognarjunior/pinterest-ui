@@ -25,5 +25,10 @@ export const styles = StyleSheet.create({
   },
   close: {
     color: colors.White
+  },
+  options: {
+    flexDirection: "row",
+    gap: 16,
+    marginTop: 32
   }
 });
