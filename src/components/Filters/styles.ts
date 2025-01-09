@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   filters: {
     paddingBottom: 4,
-    maxHeight: 34
+    maxHeight: 36
   },
   content: {
     paddingHorizontal: 8,

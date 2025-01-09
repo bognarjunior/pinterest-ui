@@ -3,7 +3,9 @@ import { theme } from "@/theme";
 const { colors, fontFamily } = theme;
 
 export const styles = StyleSheet.create({
-  pressable: {},
+  pressable: {
+    paddingBottom: 6,
+  },
   text: {
     color: colors.White,
     fontSize: 16,
